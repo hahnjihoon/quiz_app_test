@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => QuizScreen(
-                                      quizs: quizs,
+                                      quizs: quizs, ///////////////////////////////////////////////////////////////////////////////////////이때 데이터넘김 왜?
                                     )));
                         // 버튼이 눌렸을 때 수행할 동작
                       },
