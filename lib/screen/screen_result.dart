@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app_test/model/model_quize.dart';
+import 'package:quiz_app_test/screen/screen_home.dart';
 
 class ResultScreen extends StatelessWidget {
   List<int> answers;
@@ -19,7 +20,8 @@ class ResultScreen extends StatelessWidget {
       }
     }
 
-    return SafeArea(
+    return WillPopScope(
+        onWillPop: () async => false,
         child: Scaffold(
             appBar: AppBar(
               title: Text('My Quiz APP'),
@@ -36,7 +38,75 @@ class ResultScreen extends StatelessWidget {
                 width: width*0.85,
                 height: height*0.5,
                 child: Column(
-                  children: <Widget>[], //빈리스트에 들어갈 위젯타입
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(bottom: width * 0.048),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.deepPurple),
+                        color: Colors.white,
+                      ),
+                      width: width * 0.73,
+                      height: height * 0.25,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.fromLTRB(0, width*0.048, 0, width*0.012),
+                            child: Text(
+                              '수고하셨습니다',
+                              style: TextStyle(
+                                fontSize: width*0.055,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            '니점수는',
+                            style: TextStyle(
+                                fontSize: width*0.038,
+                                fontWeight: FontWeight.bold
+                            ),
+                          ),
+                          Expanded(child: Container(),
+                          ),
+                          Text(
+                            score.toString() + '/' + quizs.length.toString(),
+                            style: TextStyle(
+                              fontSize: width*0.1,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(width*0.012),
+                          )
+                        ],
+                      ),
+                    ),
+                    Expanded(child: Container(),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(bottom: width*0.048),
+                      child: ButtonTheme(
+                        minWidth: width*0.73,
+                        height: height*0.065,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context){
+                              return HomeScreen();
+                            }));
+                          },
+                          child: Text('홈으로 돌아가기'),
+
+                        ),
+                      ),
+                    )
+                  ], //빈리스트에 들어갈 위젯타입
                 ),
               ),
             ),
